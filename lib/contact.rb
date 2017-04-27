@@ -12,6 +12,10 @@ class Contact
     @email_list = parameters.fetch(:email_list)
   end
 
+  def add_address (address)
+    @mailing_address_list.push(address)
+  end
+
 end
 
 class Phone
