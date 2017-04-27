@@ -10,7 +10,7 @@ describe(Phone) do
         :number => "5038675309",
         :type => "personal"
       })
-      expect(test_phone.number).to(eq("8675309"))
+      expect(test_phone.number).to(eq("5038675309"))
     end
   end
 end
