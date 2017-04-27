@@ -16,6 +16,10 @@ class Contact
     @mailing_address_list.push(address)
   end
 
+  def add_email (email)
+    @email_list.push(email)
+  end
+
 end
 
 class Phone
