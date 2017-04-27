@@ -1,6 +1,12 @@
 class Contact
   @@contacts = []
-  attr_reader(:first_name, :last_name, :job_title,:company,:mailing_address_list,:phone_num_list,:email_list)
+  attr_reader(:first_name,
+  :last_name,
+  :job_title,
+  :company,
+  :mailing_address_list,
+  :phone_num_list,
+  :email_list)
 
   def initialize (parameters)
     @first_name = parameters.fetch(:first_name)
@@ -20,6 +26,9 @@ class Contact
     @email_list.push(email)
   end
 
+  def add_phone (phone)
+    @phone_num_list.push(phone)
+  end
 end
 
 class Phone
