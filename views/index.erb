@@ -64,8 +64,9 @@
       <% end %>
 
       <h2>add address</h2>
-      <form action="/update_addr" method="post">
+      <form action="/update" method="post">
         <input type="hidden" name="id" value="<%= @contact.id %>">
+        <input type="hidden" name="add" value="addr">
         <input type="text" name="addr_street">
         <label for="addr_street">street</label>
         <input type="text" name="addr_city">
@@ -79,8 +80,9 @@
         <button type="submit" name="button">Submit</button>
       </form>
       <h2>add phone</h2>
-      <form action="/update_ph" method="post">
+      <form action="/update" method="post">
         <input type="hidden" name="id" value="<%= @contact.id %>">
+        <input type="hidden" name="add" value="ph">
         <input type="num" name="ph_number">
         <label for="ph_number">number</label>
         <input type="type" name="ph_type">
@@ -88,8 +90,9 @@
         <button type="submit" name="button">Submit</button>
       </form>
       <h2>add email</h2>
-      <form action="/update_em" method="post">
+      <form action="/update" method="post">
         <input type="hidden" name="id" value="<%= @contact.id %>">
+        <input type="hidden" name="add" value="em">
         <input type="text" name="em_email">
         <label for="em_address">email</label>
         <input type="input" name="em_type">
