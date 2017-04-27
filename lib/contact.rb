@@ -1,5 +1,3 @@
-require('pry')
-
 class Contact
   @@contacts = []
   attr_reader(:first_name,
@@ -30,16 +28,15 @@ class Contact
     @@contacts
   end
 
-  def add_address (address)
-    @address_list.push(Address.new(address.select{|k,v| k.include? "addr_"}))
-  end
-
-  def add_email (email)
-    @email_list.push(Email.new(email.select{|k,v| k.include? "em_"}))
-  end
-
-  def add_phone (phone)
-    @phone_list.push(Phone.new(phone.select{|k,v| k.include? "ph_"}))
+  def update_person (params)
+    case params.fetch("add")
+    when "addr"
+      @address_list.push(Address.new(params.select{|k,v| k.include? "addr_"}))
+    when "em"
+      @email_list.push(Email.new(params.select{|k,v| k.include? "em_"}))
+    when "ph"
+      @phone_list.push(Phone.new(params.select{|k,v| k.include? "ph_"}))
+    end
   end
 end
 
