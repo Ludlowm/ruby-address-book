@@ -54,18 +54,18 @@ describe(Contact) do
         :address_params => {
           :street => "5679 Main Drive",
           :state => "MI",
-          :type => "work",
+          :address_type => "work",
           :city => "Kansas City",
           :zip => "87201"
         },
         :phone_params => {
           :area_code => "503",
           :number => "5038675309",
-          :type => "personal"
+          :phone_type => "personal"
         },
         :email_params => {
           :address => "bobhendley@gmail.com",
-          :type => "work"
+          :email_type => "work"
         }
       })
       expect(test_contact.first_name).to(eq("Sylvester"))

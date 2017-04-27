@@ -1,0 +1,101 @@
+<div class="row">
+  <div class="col-md-4">
+    <h2>add contact</h2>
+    <form class="" action="/new_contact" method="post">
+      <input type="text" name="first_name">
+      <label for="first_name">first name</label>
+      <input type="text" name="last_name">
+      <label for="last_name">last name</label>
+      <input type="text" name="job_title">
+      <label for="job_title">job title</label>
+      <input type="text" name="company">
+      <label for="company">company</label>
+      <p>address</p>
+      <input type="text" name="addr_street">
+      <label for="addr_street">street</label>
+      <input type="text" name="addr_city">
+      <label for="addr_city">city</label>
+      <input type="text" name="addr_state">
+      <label for="addr_state">state</label>
+      <input type="text" name="addr_zip">
+      <label for="addr_zip">zip</label>
+      <input type="text" name="addr_type">
+      <label for="addr_type">type</label>
+      <p>phone number</p>
+      <input type="num" name="ph_number">
+      <label for="ph_number">number</label>
+      <input type="type" name="ph_type">
+      <label for="ph_type">type</label>
+      <p>email address</p>
+      <input type="text" name="em_email">
+      <label for="em_email">email</label>
+      <input type="input" name="em_type">
+      <label for="em_type">email type</label><br>
+      <button type="submit" name="button">Submit</button>
+    </form>
+  </div>
+
+  <div class="col-md-4">
+    <h2>contacts</h2>
+    <ul>
+      <% Contact.all.each do |contact|%>
+        <a href="/inspect/<%= contact.id %>"><li> <%="#{contact.first_name} #{contact.last_name}"%> </li></a>
+      <% end %>
+    </ul>
+  </div>
+
+  <div class="col-md-4">
+    <%if @contact%>
+      <h2><%="#{@contact.first_name} #{@contact.last_name}"%></h2>
+      <p><%="#{@contact.job_title}, #{ @contact.company}"%></p>
+      <hr>
+      <%@contact.address_list.each_index do |i|%>
+        <p><strong><%= @contact.address_list[i].type %></strong></p>
+        <p><%= @contact.address_list[i].street %></p>
+        <p><%="#{@contact.address_list[i].city}, #{@contact.address_list[i].state} #{@contact.address_list[i].zip}"%></p>
+      <% end %>
+      <hr>
+      <%@contact.phone_list.each_index do |i|%>
+        <p><%="#{@contact.phone_list[i].type}: #{@contact.phone_list[i].number}"%></p>
+      <% end %>
+      <hr>
+      <%@contact.email_list.each_index do |i|%>
+        <p><%="#{@contact.email_list[i].type}: #{@contact.email_list[i].address}"%></p>
+      <% end %>
+
+      <h2>add address</h2>
+      <form action="/update_addr" method="post">
+        <input type="hidden" name="id" value="<%= @contact.id %>">
+        <input type="text" name="addr_street">
+        <label for="addr_street">street</label>
+        <input type="text" name="addr_city">
+        <label for="addr_city">city</label>
+        <input type="text" name="addr_state">
+        <label for="addr_state">state</label>
+        <input type="text" name="addr_zip">
+        <label for="addr_zip">zip</label>
+        <input type="text" name="addr_type">
+        <label for="addr_type">type</label><br>
+        <button type="submit" name="button">Submit</button>
+      </form>
+      <h2>add phone</h2>
+      <form action="/update_ph" method="post">
+        <input type="hidden" name="id" value="<%= @contact.id %>">
+        <input type="num" name="ph_number">
+        <label for="ph_number">number</label>
+        <input type="type" name="ph_type">
+        <label for="ph_type">type</label><br>
+        <button type="submit" name="button">Submit</button>
+      </form>
+      <h2>add email</h2>
+      <form action="/update_em" method="post">
+        <input type="hidden" name="id" value="<%= @contact.id %>">
+        <input type="text" name="em_email">
+        <label for="em_address">email</label>
+        <input type="input" name="em_type">
+        <label for="em_type">email type</label><br>
+        <button type="submit" name="button">Submit</button>
+      </form>
+    <% end %>
+  </div>
+</div>
