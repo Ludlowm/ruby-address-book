@@ -1,5 +1,6 @@
 require 'rspec'
 require 'contact'
+require('pry')
 
 
 describe(Phone) do
@@ -45,61 +46,56 @@ end
 describe(Contact) do
   describe('initialize') do
     it('creates a new contact') do
-      test_phone = Phone.new({
-        :area_code => "503",
-        :number => "5038675309",
-        :type => "personal"
-      })
-      test_email = Email.new({
-        :address => "bobhendley@gmail.com",
-        :type => "work"
-      })
-      test_address = Address.new({
-        :street => "5679 Main Drive",
-        :state => "MI",
-        :type => "work",
-        :city => "Kansas City",
-        :zip => "87201"
-      })
       test_contact = Contact.new({
         :first_name => "Sylvester",
         :last_name => "James",
         :job_title => "Mayor",
         :company => "Kansas City",
-        :mailing_address_list => [test_address],
-        :phone_num_list => [test_phone],
-        :email_list => [test_email]
+        :address_params => {
+          :street => "5679 Main Drive",
+          :state => "MI",
+          :type => "work",
+          :city => "Kansas City",
+          :zip => "87201"
+        },
+        :phone_params => {
+          :area_code => "503",
+          :number => "5038675309",
+          :type => "personal"
+        },
+        :email_params => {
+          :address => "bobhendley@gmail.com",
+          :type => "work"
+        }
       })
       expect(test_contact.first_name).to(eq("Sylvester"))
     end
   end
   describe('add_address') do
     it('adds an additional address to a given contact') do
-      test_phone = Phone.new({
-        :area_code => "503",
-        :number => "5038675309",
-        :type => "personal"
-      })
-      test_email = Email.new({
-        :address => "bobhendley@gmail.com",
-        :type => "work"
-      })
-      test_address = Address.new({
-        :street => "5679 Main Drive",
-        :state => "MI",
-        :type => "work",
-        :city => "Kansas City",
-        :zip => "87201"
-      })
       test_contact = Contact.new({
         :first_name => "Sylvester",
         :last_name => "James",
         :job_title => "Mayor",
         :company => "Kansas City",
-        :mailing_address_list => [test_address],
-        :phone_num_list => [test_phone],
-        :email_list => [test_email]
+        :address_params => {
+          :street => "5679 Main Drive",
+          :state => "MI",
+          :type => "work",
+          :city => "Kansas City",
+          :zip => "87201"
+        },
+        :phone_params => {
+          :area_code => "503",
+          :number => "5038675309",
+          :type => "personal"
+        },
+        :email_params => {
+          :address => "bobhendley@gmail.com",
+          :type => "work"
+        }
       })
+
       new_address = Address.new({
         :street => "123 Test St",
         :state => "MI",
@@ -108,35 +104,32 @@ describe(Contact) do
         :zip => "87201"
       })
       test_contact.add_address(new_address)
-      expect(test_contact.mailing_address_list[1].street).to(eq("123 Test St"))
+      expect(test_contact.address_list[1].street).to(eq("123 Test St"))
     end
   end
   describe('add_email') do
     it('adds an additional email to a given contact') do
-      test_phone = Phone.new({
-        :area_code => "503",
-        :number => "5038675309",
-        :type => "personal"
-      })
-      test_email = Email.new({
-        :address => "bobhendley@gmail.com",
-        :type => "work"
-      })
-      test_address = Address.new({
-        :street => "5679 Main Drive",
-        :state => "MI",
-        :type => "work",
-        :city => "Kansas City",
-        :zip => "87201"
-      })
       test_contact = Contact.new({
         :first_name => "Sylvester",
         :last_name => "James",
         :job_title => "Mayor",
         :company => "Kansas City",
-        :mailing_address_list => [test_address],
-        :phone_num_list => [test_phone],
-        :email_list => [test_email]
+        :address_params => {
+          :street => "5679 Main Drive",
+          :state => "MI",
+          :type => "work",
+          :city => "Kansas City",
+          :zip => "87201"
+        },
+        :phone_params => {
+          :area_code => "503",
+          :number => "5038675309",
+          :type => "personal"
+        },
+        :email_params => {
+          :address => "bobhendley@gmail.com",
+          :type => "work"
+        }
       })
       new_email = Email.new({
         :address => "slymayor123@gmail.com",
@@ -148,30 +141,27 @@ describe(Contact) do
   end
   describe('add_phone') do
     it('adds an additional phone number to a given contact') do
-      test_phone = Phone.new({
-        :area_code => "503",
-        :number => "5038675309",
-        :type => "personal"
-      })
-      test_email = Email.new({
-        :address => "bobhendley@gmail.com",
-        :type => "work"
-      })
-      test_address = Address.new({
-        :street => "5679 Main Drive",
-        :state => "MI",
-        :type => "work",
-        :city => "Kansas City",
-        :zip => "87201"
-      })
       test_contact = Contact.new({
         :first_name => "Sylvester",
         :last_name => "James",
         :job_title => "Mayor",
         :company => "Kansas City",
-        :mailing_address_list => [test_address],
-        :phone_num_list => [test_phone],
-        :email_list => [test_email]
+        :address_params => {
+          :street => "5679 Main Drive",
+          :state => "MI",
+          :type => "work",
+          :city => "Kansas City",
+          :zip => "87201"
+        },
+        :phone_params => {
+          :area_code => "503",
+          :number => "5038675309",
+          :type => "personal"
+        },
+        :email_params => {
+          :address => "bobhendley@gmail.com",
+          :type => "work"
+        }
       })
       new_phone = Phone.new({
         :area_code => "503",
@@ -179,7 +169,7 @@ describe(Contact) do
         :type => "work"
       })
       test_contact.add_phone(new_phone)
-      expect(test_contact.phone_num_list[1].number).to(eq("12345"))
+      expect(test_contact.phone_list[1].number).to(eq("12345"))
     end
   end
 end

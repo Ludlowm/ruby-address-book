@@ -1,25 +1,31 @@
+require('pry')
+
 class Contact
   @@contacts = []
   attr_reader(:first_name,
   :last_name,
   :job_title,
   :company,
-  :mailing_address_list,
-  :phone_num_list,
+  :address_list,
+  :phone_list,
   :email_list)
+
+  def Contact.save (contact)
+    @@contacts.push(contact)
+  end
 
   def initialize (parameters)
     @first_name = parameters.fetch(:first_name)
     @last_name = parameters.fetch(:last_name)
     @job_title = parameters.fetch(:job_title)
     @company = parameters.fetch(:company)
-    @mailing_address_list = parameters.fetch(:mailing_address_list)
-    @phone_num_list = parameters.fetch(:phone_num_list)
-    @email_list = parameters.fetch(:email_list)
+    @address_list = [Address.new(parameters.fetch(:address_params))]
+    @phone_list = [Phone.new(parameters.fetch(:phone_params))]
+    @email_list = [Email.new(parameters.fetch(:email_params))]
   end
 
   def add_address (address)
-    @mailing_address_list.push(address)
+    @address_list.push(address)
   end
 
   def add_email (email)
@@ -27,7 +33,7 @@ class Contact
   end
 
   def add_phone (phone)
-    @phone_num_list.push(phone)
+    @phone_list.push(phone)
   end
 end
 
